@@ -54,8 +54,7 @@ router.post("/",function (req, res, next) {
     else 
     {
         console.log("indise else");
-        //var query = {"name" : req.body.searchQuery};
-        var query = {"$text" : {"$search" : searchQuery} }; //exact search
+        var query = {$or: [{"propertyType": { $regex:new RegExp(searchQuery, "i") }}, {"locality" : new RegExp(searchQuery, "i")}, {"builder":new RegExp(searchQuery, "i")}, {"name" : new RegExp(searchQuery, "i")}] }; //exact search 
         console.log(query);
         //var query = {"name" : /req.body.searchQuery/};
         property.find(query,function (err, result) 
