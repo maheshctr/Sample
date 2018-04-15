@@ -3,6 +3,8 @@ var router = express.Router();
 var property = require('../models/property');
 var authConfig = require('../config/appConfig');
 var jwt = require('../node_modules/jsonwebtoken');
+var review = require('../models/review'); 
+
 //var propService = require("../services/propertyService");
 
 router.post("/",function (req, res, next) { 
