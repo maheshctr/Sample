@@ -5,7 +5,7 @@ var Schema = moongoose.Schema;
 
 var Review = new Schema
 ({
-    id : Number,
+    //id : Number,
     propertyId : String,
     title : String,
     description : String,
@@ -13,6 +13,6 @@ var Review = new Schema
     createdDateTime : Date
 });
 
-Review.plugin(autoIncrement.plugin, {model : 'Review', field : 'id', startAt : 1});
+//Review.plugin(autoIncrement.plugin, {model : 'Review', field : 'id', startAt : 1});
 
 module.exports = moongoose.model('Review', Review);
