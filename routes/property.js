@@ -5,7 +5,7 @@ var authConfig = require('../config/appConfig');
 var jwt = require('../node_modules/jsonwebtoken');
 //var propService = require("../services/propertyService");
 
-router.get("/getData",function (req, res, next) {
+router.post("/getData",function (req, res, next) {
     // try 
     // {
     //     next(propService.getProperties(req.body.searchQuery), function (err, data) {
