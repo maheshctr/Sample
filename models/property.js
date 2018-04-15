@@ -5,7 +5,7 @@ var Schema = moongoose.Schema;
 
 var Property = new Schema
 ({
-    //propertyId : Number,
+    propertyId : Number,
     name : String,
     cost : String,
     imgUrl : String,
