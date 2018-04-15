@@ -87,4 +87,72 @@ router.post("/",function (req, res, next) {
 
 });
 
+router.put("/getData/:id", function (req, res, next) {
+    console.log(req.params);
+    let id = req.params.id;
+    let query = {"propertyId" : id};
+    property.findOne(query,function (err, result) 
+        {
+            if (err) 
+            {
+                res.status(500).json({
+                    "message": "Error occurred plaase contact admin",
+                    "data" : err
+                });   
+            }
+            else
+            {
+                res.status(200).json({
+                    "message" : "Data successfull",
+                    "data" : result
+                });
+            }
+            
+        });  
+});
+
+router.post("/addReview", function (req, res, next) {
+    let localreview = new review
+    ({
+        propertyId : req.body.propertyId,
+        title : req.body.title,
+        description : req.body.description,
+        by : req.body.by,
+        createdDateTime : new Date()
+    });
+    localreview.save(function(err,result) {
+        if(err)
+        {
+          return res.status(500).json({
+            "message" : 'An error occurred',
+            "data" : err
+          });
+        }
+        res.status(201).json({
+          "message" : 'Saved review',
+          "data" : result
+        });
+      });
+});
+
+
+router.put("/getReviews/:id", function (req, res, next) {
+    console.log(req.params);
+    let id = req.params.id;
+    let query = {"propertyId" : id};
+    review.find(query,function(err,result) {
+        if(err)
+        {
+          return res.status(500).json({
+            "message" : 'An error occurred',
+            "data" : err
+          });
+        }
+        res.status(201).json({
+          "message" : 'Saved review',
+          "data" : result
+        });
+      });
+});
+
 module.exports = router;
