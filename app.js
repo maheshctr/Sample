@@ -35,7 +35,8 @@ app.use('/scrap', scrapRouter);
 // to accept cross domain reuests
 app.use(function (req, res, next) 
 {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4100');
+  res.setHeader('Access-Control-Allow-Origin', 'https://eypropertysite.azurewebsites.net');
+  res.setHeader('Access-Control-Allow-Origin', 'http://eypropertysite.azurewebsites.net');
   //res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept');
   res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
