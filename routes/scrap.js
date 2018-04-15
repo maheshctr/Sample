@@ -26,7 +26,7 @@ router.get("/1",function (req, res, next) {
             for (let index = 0; index <
                 $('.infinite-loader>.infi-item-wrapper>.list-item-container>.list-card-item').length; index++) {
                 const ele = $('.infinite-loader>.infi-item-wrapper>.list-item-container>.list-card-item')[index];
-                //console.log(ele);
+               //console.log(ele);
                 let prop = {};
                 prop.imgUrl = $($(ele).find('.lst-img-container>.lst-img')[0]).css('background-image').replace('url(', '').replace(')', '').replace('"', '');
                 prop.name = $($(ele).find('.lst-dtls>.lst-heading>.lst-title')[0]).text()
@@ -51,17 +51,33 @@ router.get("/1",function (req, res, next) {
                 //console.log(prop);
                 listing.push(prop);
             }
+            for (let index = 0; index < listing.length; index++) {
+                listing[index].propertyId = index;
+            }
             // Finally, we'll define the variables we're going to capture
             propertyModel.insertMany(listing, function (err,result) {
-                if (err) throw err;
-                console.log(res.insertedCount + " documents inserted");
+                if (err) 
+                {
+                    res.status(500).json({
+                        "message": "Error occurred plaase contact admin",
+                        "data" : err
+                    });   
+                }
+                else
+                {
+                    res.status(200).json({
+                        "message" : "Data successfull",
+                        "data" : result
+                    });
+                }
+                console.log(result.insertedCount + " documents inserted");
              });
-            var title, release, rating;
-            var json = { title: "", release: "", rating: "" };
-            res.status(201).json({
-                message : 'Saved Coontact',
-                obj : {"data":listing}
-              });   
+            // var title, release, rating;
+            // var json = { title: "", release: "", rating: "" };
+            // res.status(201).json({
+            //     message : 'Saved Coontact',
+            //     obj : {"data":listing}
+            //   });   
         }
     });
 
@@ -86,7 +102,8 @@ router.get("/2",function (req, res, next) {
              for (let index = 0; index < $('.snb-tile').length; index++) {
                  const ele = $('.snb-tile')[index];
                  //console.log(ele);
-                 let prop = {};
+                 //let prop = {};
+                 let prop = new propertyModel();
                  prop.imgUrl = $($($(ele).find('img'))[0]).attr('data-src');
                  prop.name = $($(ele).find('.snb-tile .snb-tile-info h4 a')[0]).text()
                  prop.cost = $($(ele).find('.infodata span')[0]).text()
@@ -104,20 +121,38 @@ router.get("/2",function (req, res, next) {
                  //console.log(prop);
                  listing.push(prop);
              }
+             for (let index = 0; index < listing.length; index++) {
+                 listing[index].propertyId = index;
+             }
              // Finally, we'll define the variables we're going to capture
              propertyModel.insertMany(listing, function (err,result) {
-                if (err) throw err;
-                console.log(res.insertedCount + " documents inserted");
+                if (err) 
+                {
+                    res.status(500).json({
+                        "message": "Error occurred plaase contact admin",
+                        "data" : err
+                    });   
+                }
+                else
+                {
+                    res.status(200).json({
+                        "message" : "Data successfull",
+                        "data" : result
+                    });
+                }
+
+                console.log(result.insertedCount + " documents inserted");
              });
 
-            var title, release, rating;
-            var json = { title: "", release: "", rating: "" };
-            res.status(201).json({
-                message : 'Saved Coontact',
-                obj : {"data":listing}
-              });
+            // var title, release, rating;
+            // var json = { title: "", release: "", rating: "" };
+            // res.status(201).json({
+            //     message : 'Saved Coontact',
+            //     obj : {"data":listing}
+            //   });
         }     
     });
 });
 
 module.exports = router;
+
