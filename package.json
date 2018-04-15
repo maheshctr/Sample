@@ -1,0 +1,24 @@
+{
+  "name": "webapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "debug": "^2.6.9",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "http-errors": "^1.6.3",
+    "jsonwebtoken": "^8.2.0",
+    "mongodb": "^3.0.6",
+    "mongoose": "^5.0.12",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.9.0",
+    "pug": "2.0.0-beta11",
+    "request": "^2.85.0"
+  }
+}
